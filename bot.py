@@ -1,12 +1,14 @@
 from webdriver_manager.chrome import ChromeDriverManager
 from botcity.web import WebBot, Browser, By
+from botcity.core import DesktopBot
 from botcity.maestro import *
 from modules.maestro import MaestroAlerts
+
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
 
-class Bot(WebBot):
+class Bot():
 
     def configuration_browser(self):
         self.headless = False
