@@ -8,7 +8,10 @@ from modules.maestro import MaestroAlerts
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
 
-class Bot():
+class Bot(DesktopBot):
+    def __init__(self):
+        self.web_bot= WebBot()
+
 
     def configuration_browser(self):
         self.headless = False
@@ -24,6 +27,9 @@ class Bot():
             print("Finished initialization browser")
 
     def action(self, execution=None):
+        
+        
+
         maestro = BotMaestroSDK.from_sys_args()
         execution = maestro.get_execution()
 
@@ -32,8 +38,8 @@ class Bot():
         print(f"Task Parameters are: {execution.parameters}")
 
         try:
-            self.configuration_browser()
-            self.start_browser_bot()
+            self.web_bot.configuration_browser()
+            self.web_bot.start_browser_bot()
             maestro_actions.alert_info("Iniciando a automaçao","Automaçao está iniciando...")
 
             finshed_status = AutomationTaskFinishStatus.SUCCESS
